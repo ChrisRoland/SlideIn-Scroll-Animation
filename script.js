@@ -1,20 +1,44 @@
-const boxes = document.querySelectorAll(".box")
+//JQuery
+const $boxes = $(".box");
 
-window.addEventListener("scroll", checkBoxes)
+$(window).on("scroll", checkBoxes);
 
-checkBoxes()
+checkBoxes();
 
 function checkBoxes() {
-    const triggerBottom = window.innerHeight / 5 * 4;
-    console.log(triggerBottom)
+    const triggerBottom = $(window).height() / 5 * 4;
+    console.log(triggerBottom);
 
-    boxes.forEach(box => {
-        const boxTop = box.getBoundingClientRect().top
+    $boxes.each(function () {
+        const boxTop = $(this).offset().top - $(window).scrollTop();
 
         if (boxTop < triggerBottom) {
-            box.classList.add("show")
+            $(this).addClass("show");
         } else {
-            box.classList.remove("show")
+            $(this).removeClass("show");
         }
-    })
+    });
 }
+
+//Vanilla JS
+
+// const boxes = document.querySelectorAll(".box")
+
+// window.addEventListener("scroll", checkBoxes)
+
+// checkBoxes()
+
+// function checkBoxes() {
+//     const triggerBottom = window.innerHeight / 5 * 4;
+//     console.log(triggerBottom)
+
+//     boxes.forEach(box => {
+//         const boxTop = box.getBoundingClientRect().top
+
+//         if (boxTop < triggerBottom) {
+//             box.classList.add("show")
+//         } else {
+//             box.classList.remove("show")
+//         }
+//     })
+// }
